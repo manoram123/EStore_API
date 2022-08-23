@@ -8,7 +8,15 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors())
 
+require('./database/connect')
+
+const userRoutes = require('./routes/userRoutes')
+app.use(userRoutes)
+
+const productRoutes = require('./routes/productRoute')
+app.use(productRoutes)
+
 const server = http.createServer(app);
-server.listen(process.env.PORT || 5000, () => {
+server.listen(5000, () => {
     console.log("Server Started on Port: "+ process.env.PORT)
 })
